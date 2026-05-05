@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mymart_dev_db
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ashokit.classes@gmail.com
+    password: sddf kmog gyjd jtsb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
