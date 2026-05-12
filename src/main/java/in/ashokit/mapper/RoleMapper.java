@@ -3,7 +3,7 @@ package in.ashokit.mapper;
 import org.modelmapper.ModelMapper;
 
 import in.ashokit.dto.RoleDto;
-import in.ashokit.entities.RoleEntity;
+import in.ashokit.entity.RoleEntity;
 
 public class RoleMapper {
 

@@ -1,7 +1,7 @@
 package in.ashokit.mapper;
 
 import in.ashokit.dto.UserDto;
-import in.ashokit.entities.UserEntity;
+import in.ashokit.entity.UserEntity;
 import org.modelmapper.ModelMapper;
 
 public class UserMapper {

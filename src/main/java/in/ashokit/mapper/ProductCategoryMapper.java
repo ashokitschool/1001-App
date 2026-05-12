@@ -2,7 +2,7 @@ package in.ashokit.mapper;
 
 
 import in.ashokit.dto.ProductCategoryDto;
-import in.ashokit.entities.ProductCategoryEntity;
+import in.ashokit.entity.ProductCategoryEntity;
 import org.modelmapper.ModelMapper;
 
 public class ProductCategoryMapper {

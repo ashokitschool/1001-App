@@ -1,7 +1,7 @@
 package in.ashokit.mapper;
 
 import in.ashokit.dto.ShippingAddressDto;
-import in.ashokit.entities.ShippingAddressEntity;
+import in.ashokit.entity.ShippingAddressEntity;
 import org.modelmapper.ModelMapper;
 
 public class AddressMapper {

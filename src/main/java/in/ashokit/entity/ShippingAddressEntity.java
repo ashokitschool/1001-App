@@ -1,4 +1,4 @@
-package in.ashokit.entities;
+package in.ashokit.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
 package in.ashokit.mapper;
 
 import in.ashokit.dto.OrderDto;
-import in.ashokit.entities.OrderEntity;
+import in.ashokit.entity.OrderEntity;
 import org.modelmapper.ModelMapper;
 
 public class OrderMapper {

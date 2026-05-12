@@ -1,4 +1,4 @@
-package in.ashokit.entities;
+package in.ashokit.entity;
 
 import java.time.LocalDateTime;
 

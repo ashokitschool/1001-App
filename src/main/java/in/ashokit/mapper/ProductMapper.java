@@ -1,7 +1,7 @@
 package in.ashokit.mapper;
 
 import in.ashokit.dto.ProductDto;
-import in.ashokit.entities.ProductEntity;
+import in.ashokit.entity.ProductEntity;
 import org.modelmapper.ModelMapper;
 
 public class ProductMapper {
