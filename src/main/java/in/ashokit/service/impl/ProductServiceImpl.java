@@ -1,5 +1,6 @@
 package in.ashokit.service.impl;
 
+import in.ashokit.constants.AppConstants;
 import in.ashokit.dto.ProductDto;
 import in.ashokit.entity.ProductEntity;
 import in.ashokit.mapper.ProductMapper;
@@ -114,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity productEntity = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
 
         // soft delete - update the active status to false instead of deleting the record from the database
-        productEntity.setActive("No");
+        productEntity.setActive(AppConstants.NO);
         ProductEntity save = productRepository.save(productEntity);
 
         return ProductMapper.toDto(save);

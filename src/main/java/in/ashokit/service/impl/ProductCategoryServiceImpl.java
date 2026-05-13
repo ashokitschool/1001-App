@@ -1,5 +1,6 @@
 package in.ashokit.service.impl;
 
+import in.ashokit.constants.AppConstants;
 import in.ashokit.dto.ProductCategoryDto;
 import in.ashokit.entity.ProductCategoryEntity;
 import in.ashokit.mapper.ProductCategoryMapper;
@@ -20,7 +21,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     public ProductCategoryDto createProductCategory(ProductCategoryDto productCategoryDto) {
 
-        productCategoryDto.setActiveSw("Y");
+        productCategoryDto.setActiveSw(AppConstants.YES);
         productCategoryDto.setCreatedBy(productCategoryDto.getCreatedBy());
 
         ProductCategoryEntity productCategoryEntity = ProductCategoryMapper.toEntity(productCategoryDto);
@@ -84,7 +85,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
         // productCategoryRepository.delete(existingEntity);
 
-        existingEntity.setActiveSw("N");
+        existingEntity.setActiveSw(AppConstants.NO);
        // existingEntity.setUpdatedBy(updatedBy);
         ProductCategoryEntity updatedEntity = productCategoryRepository.save(existingEntity);//UPSERT
 

@@ -1,5 +1,6 @@
 package in.ashokit.service.impl;
 
+import in.ashokit.constants.AppConstants;
 import in.ashokit.dto.RoleDto;
 import in.ashokit.entity.RoleEntity;
 import in.ashokit.mapper.RoleMapper;
@@ -67,7 +68,7 @@ public class RoleServiceImpl implements RoleService {
         Optional<RoleEntity> byId = roleRepo.findById(roleId);
         if(byId.isPresent()) {
             RoleEntity roleEntity = byId.get();
-            roleEntity.setActiveSw("No");
+            roleEntity.setActiveSw(AppConstants.NO);
             RoleEntity deletedEntity = roleRepo.save(roleEntity);
             return RoleMapper.toDto(deletedEntity);
         }
