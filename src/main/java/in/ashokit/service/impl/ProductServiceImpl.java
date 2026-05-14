@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,31 +35,35 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto createProduct(Integer categoryId, ProductDto productDto, MultipartFile productImage) throws Exception {
 
-        String originalFilename = productImage.getOriginalFilename();
+        UUID uuid = UUID.randomUUID();
+
+        String originalFilename = uuid.toString() + "_" + productImage.getOriginalFilename();
+
         Path filePath = Paths.get(imagesUploadDir + originalFilename);
 
-        // Create the directory if it doesn't exist
+        // create uploading dir if it is not available
         if (!Files.exists(filePath)) {
             try {
                 Files.createDirectories(filePath.getParent());
-
-            } catch (IOException e) {
-                throw new RuntimeException("Failed to save product image", e);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
-        // Save the file to the specified location
+        // save the file to specified location
         Files.copy(productImage.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
         productDto.setImageUrl(filePath.toString());
-        ProductEntity entity = ProductMapper.toEntity(productDto);
+
+        ProductEntity productEntity = ProductMapper.toEntity(productDto);
 
         productCategoryRepository.findById(categoryId).ifPresent(category -> {
-            entity.setCategory(category);
+            productEntity.setCategory(category);
         });
 
-        ProductEntity savedEntity = productRepository.save(entity);
+        ProductEntity savedEntity = productRepository.save(productEntity); // UPSERT
+
         return ProductMapper.toDto(savedEntity);
+
     }
 
     @Override
@@ -66,14 +71,16 @@ public class ProductServiceImpl implements ProductService {
 
         ProductEntity productEntity = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
 
-        String originalFilename = productImage.getOriginalFilename();
+        UUID uuid = UUID.randomUUID();
+
+        String originalFilename = uuid.toString() + "_" + productImage.getOriginalFilename();
+
         Path filePath = Paths.get(imagesUploadDir + originalFilename);
 
         // Create the directory if it doesn't exist
         if (!Files.exists(filePath)) {
             try {
                 Files.createDirectories(filePath.getParent());
-
             } catch (IOException e) {
                 throw new RuntimeException("Failed to save product image", e);
             }
@@ -89,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
         // productEntity.setActive(productDto.isActive());
         productEntity.setUnitPrice(productDto.getUnitPrice());
 
-        ProductEntity updatedEntity = productRepository.save(productEntity);
+        ProductEntity updatedEntity = productRepository.save(productEntity); // UPSERT
         return ProductMapper.toDto(updatedEntity);
     }
 
