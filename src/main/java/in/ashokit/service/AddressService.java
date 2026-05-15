@@ -11,4 +11,7 @@ public interface AddressService {
     public ShippingAddressDto updateAddress(Integer addrId, ShippingAddressDto addressDto);
 
     public List<ShippingAddressDto> getUserAddresses(Integer userId);
+
+    public ShippingAddressDto deleteAddress(Integer addrId);
+
 }
