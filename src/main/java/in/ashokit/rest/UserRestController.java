@@ -7,10 +7,7 @@ import in.ashokit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -47,11 +44,11 @@ public class UserRestController {
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<ApiResponse<ResetPwdDto>> resetPassword(@RequestBody ResetPwdDto resetPwdDto) {
-        ResetPwdDto resetPwdDto1 = userService.resetPassword(resetPwdDto);
-        ApiResponse<ResetPwdDto> response = new ApiResponse<>();
+    public ResponseEntity<ApiResponse<UserDto>> resetPassword(@RequestBody ResetPwdDto resetPwdDto) {
+        UserDto userDto = userService.resetPwd(resetPwdDto);
+        ApiResponse<UserDto> response = new ApiResponse<>();
 
-        if (resetPwdDto1 == null) {
+        if (userDto == null) {
             response.setStatusCode(HttpStatus.BAD_REQUEST.value());
             response.setMessage("Check Your Email or Pwd and Try Again");
             response.setData(null);
@@ -60,7 +57,7 @@ public class UserRestController {
 
         response.setStatusCode(HttpStatus.OK.value());
         response.setMessage("Password reset successfully");
-        response.setData(resetPwdDto1);
+        response.setData(userDto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

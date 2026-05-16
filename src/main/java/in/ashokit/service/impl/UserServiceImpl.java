@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public UserDto saveUser(UserDto userDto) {
 
         String randomPwd = generateRandomPwd(5);
-        userDto.setPwd(randomwPwd);
+        userDto.setPwd(randomPwd);
         userDto.setPwdUpdated(AppConstants.NO);
         UserEntity userEntity = UserMapper.dtoToEntity(userDto);
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         UserEntity savedUser = userRepository.save(userEntity);
         if (savedUser != null) {
             String subject = "Your Account Created - MyMart";
-            String body = "Your Temporary Password is : " + randowmPwd;
+            String body = "Your Temporary Password is : " + randomPwd;
             emailService.sendEmail(userDto.getEmail(), subject, body);
         }
         return UserMapper.entityToDto(savedUser);

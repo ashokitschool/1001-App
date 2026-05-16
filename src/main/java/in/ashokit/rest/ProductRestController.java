@@ -42,7 +42,7 @@ public class ProductRestController {
     }
 
     @PutMapping("/product")
-    public ResponseEntity<ApiResponse<ProductDto>> createProduct(@RequestParam("productId") Integer productId,
+    public ResponseEntity<ApiResponse<ProductDto>> updateProduct(@RequestParam("productId") Integer productId,
                                                                  @RequestParam("product") String productJson,
                                                                  @RequestParam("productImage") MultipartFile productImage)
             throws Exception{
