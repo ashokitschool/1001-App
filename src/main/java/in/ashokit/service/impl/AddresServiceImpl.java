@@ -75,7 +75,7 @@ public class AddresServiceImpl implements AddressService {
     @Override
     public List<ShippingAddressDto> getUserAddresses(Integer userId) {
 
-        List<ShippingAddressEntity> entities = addrRepo.findByUseruserId(userId);
+        List<ShippingAddressEntity> entities = addrRepo.findByUserUserId(userId);
 
         return entities.stream()
                 .map(AddressMapper::entityToDto)
