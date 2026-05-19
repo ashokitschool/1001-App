@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface OrderService {
 
-    public PurchaseOrderResponseDto createOrder(PurchaseOrderRequestDto orderReqDto);
+    public PurchaseOrderResponseDto createOrder(PurchaseOrderRequestDto orderReqDto) throws Exception;
 
     public OrderDto updateOrder(Integer orderId, OrderDto orderDto);
 
-    public OrderDto cancelOrder(Integer orderId);
+    public OrderDto cancelOrder(Integer orderId) throws Exception;
 
     public OrderDto trackOrder(Integer orderId);
 

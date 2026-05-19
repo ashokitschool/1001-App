@@ -7,11 +7,11 @@ import java.util.List;
 @Data
 public class PurchaseOrderRequestDto {
 
-    public UserDto userDto;
+    public UserDto user;
 
-    public ShippingAddressDto addrDto;
+    public ShippingAddressDto shippingAddress;
 
-    public OrderDto orderDto;
+    public OrderDto order;
 
-    public List<OrderItemsDto> itemsList;
+    public List<OrderItemsDto> orderItems;
 }
